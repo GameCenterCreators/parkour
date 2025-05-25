@@ -162,7 +162,7 @@ function startLevel1 () {
         `)
     tiles.setCurrentTilemap(tilemap`level1`)
     scene.cameraFollowSprite(myCorg)
-    tiles.placeOnRandomTile(myCorg, sprites.swamp.swampTile2)
+    tiles.placeOnRandomTile(myCorg, assets.tile`myTile4`)
     myCorg.verticalMovement()
     myCorg.horizontalMovement()
     info.player1.setScore(0)
@@ -354,11 +354,32 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 function lavaGameOver () {
-    game.setGameOverMessage(false, "Owwwwwww, lava!")
-    game.gameOver(false)
+    if (checkpoint == true) {
+
+    }   else {
+        tiles.placeOnRandomTile(myCorg, img`
+            . . . . . . . . . . 8 8 . . . .
+            . . . 8 8 . . . . . 8 8 . . . .
+            . . . 8 7 8 . . . 8 7 8 . . . .
+            . . . 8 7 6 8 . 8 8 7 8 . . . .
+            . . . 8 6 7 8 . 8 7 7 8 . . . .
+            . . . 8 8 7 8 8 8 7 7 8 . . . .
+            . . . 8 8 7 6 8 6 7 6 8 8 8 8 .
+            8 8 . 8 8 7 7 8 7 7 8 8 6 7 8 .
+            8 7 8 8 8 7 7 8 7 6 8 7 7 6 8 8
+            8 6 7 6 8 6 7 6 7 6 6 7 6 8 8 8
+            . 8 7 7 6 6 7 6 7 6 7 7 8 8 7 8
+            . . 8 7 7 6 7 8 7 6 7 6 8 7 7 8
+            . . . 8 7 6 7 8 6 6 7 8 6 7 8 .
+            . . . 8 7 8 7 8 6 6 8 8 6 8 . .
+            . . . 8 6 8 6 8 6 6 8 8 6 8 . .
+            . . . 8 6 8 6 6 6 6 8 8 6 8 . .
+        `)
+    }
 }
 let myCorg: Corgio = null
 let level = 1
+let checkpoint = false;
 myCorg = corgio.create(SpriteKind.Player)
 myCorg.setImage(img`
     . . . . f f f f f . . . . . . . 
